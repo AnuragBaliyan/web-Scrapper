@@ -1,8 +1,7 @@
 import os
-import requests # pip install requests #to sent GET requests
-from bs4 import BeautifulSoup # pip install bs4 #to parse html(getting data out from html, xml or other markup languages)
+import requests 
+from bs4 import BeautifulSoup 
 
-# user can input a search keyword and the count of images required
 # download images from google search image
 Google_Image = \
     'https://www.google.com/search?site=&tbm=isch&source=hp&biw=1873&bih=990&'
@@ -16,7 +15,7 @@ u_agnt = {
     'Connection': 'keep-alive',
 }
 
-Image_Folder = 'New_folder' #only image_folder needs to be specified
+Image_Folder = 'Dog_Images' 
 
 def main():
     if not os.path.exists(Image_Folder):
@@ -31,9 +30,8 @@ def download_images():
     
     search_url = Google_Image + 'q=' + data #'q=' because its a query
     
-    # request url, without u_agnt the permission gets denied its mandatory to use u_agnt
     response = requests.get(search_url, headers=u_agnt)
-    html = response.text #To get actual result i.e. to read the html data in text mode
+    html = response.text 
     
     # find all img where class='rg_i Q4LuWd'
     b_soup = BeautifulSoup(html, 'html.parser') #html.parser is used to parse/extract features from HTML files
